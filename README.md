@@ -1,8 +1,7 @@
 Classes:
     numbers()
         (color, int, column, evenorodd, dozen, whichhalf, 2x2, 4x4)
-    desk(table, wheel)
-    player(cash, bet)
+    player(name, cash)
     magnet(numbers)
     Main()
     Simulator()
