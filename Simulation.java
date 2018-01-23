@@ -61,11 +61,11 @@ public class Simulation {
 
     public void generateData(){
         try {
-        FileWriter writer = new FileWriter("output.csv");
-
+        FileWriter writer = new FileWriter("output.csv", true);
+        String appender = "";
         for(String element: getZones()) {
-            writer.write(element);
-            writer.write(",");
+            writer.write(appender + element);
+            appender = ",";
         }
         writer.write("\n");
         writer.flush();
@@ -75,11 +75,16 @@ public class Simulation {
         }
     }
 
+    public Simulation load(){
+        
+    }
+
     public static void main(String[] args) {
 
         Simulation simu = new Simulation();
         String[] arr = simu.getZones();
         System.out.println(Arrays.toString(arr));
+        simu.generateData();
         simu.generateData();
     }
 }
