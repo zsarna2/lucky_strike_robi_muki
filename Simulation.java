@@ -16,6 +16,16 @@ public class Simulation {
     static final int[] secondcolumn = {2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35};
     static final int[] thirdcolumn = {3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36};
 
+    public static String[] content;
+
+    public Simulation(String[] content) {
+        this.content = content;
+    }
+
+    public Simulation(){
+        this.content = getZones();
+    }
+
     public static HashMap<String, int[]> getHashMap() {
         HashMap<String, int[]> strike = new HashMap<String, int[]>();
         strike.put("Reds", Simulation.reds);
@@ -75,16 +85,25 @@ public class Simulation {
         }
     }
 
-    public Simulation load(){
-        
+    public void load(){
+        try {
+            File x = new File("output.csv");
+            Scanner sc = new Scanner(x);
+            while(sc.hasNext()) {
+                System.out.println(Arrays.toString(sc.nextLine().split(",")));
+            }
+            sc.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Error");
+        }
     }
 
     public static void main(String[] args) {
 
         Simulation simu = new Simulation();
-        String[] arr = simu.getZones();
+        String[] arr = simu.content;
         System.out.println(Arrays.toString(arr));
         simu.generateData();
-        simu.generateData();
+        simu.load();
     }
 }
