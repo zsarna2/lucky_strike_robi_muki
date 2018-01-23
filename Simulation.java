@@ -31,7 +31,36 @@ public class Simulation {
         strike.put("Third column", Simulation.thirdcolumn);
         return strike;
     }
+
+    public String[] getZones(int randomNumber){
+        HashMap<String, int[]> strike = Simulation.getHashMap();
+        String[] zones = new String[5];
+        int counter = 0;
+        
+        if (randomNumber == 0) {
+            String[] zeroZone = new String[1];
+            zeroZone[0] = "Zero";
+            return zeroZone;
+        }
+        for (Map.Entry<String, int[]> entry : strike.entrySet()){
+            String key = entry.getKey();
+            int[] value = entry.getValue();
+
+            for (int i : value){
+                if (i == randomNumber){
+                    System.out.println("true");
+                    zones[counter] = key;
+                    counter++;
+                }
+            }
+        }
+        return zones;
+    }
     
     public static void main(String[] args) {
+
+        Simulation simu = new Simulation();
+        String[] arr = simu.getZones(0);
+        System.out.println(Arrays.toString(arr));
     }
 }
