@@ -60,11 +60,9 @@ public class Simulation {
     }
 
     public void generateData(){
-            // writer
         try {
         FileWriter writer = new FileWriter("output.csv");
 
-        // data
         for(String element: getZones()) {
             writer.write(element);
             writer.write(",");
