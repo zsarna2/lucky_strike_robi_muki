@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 
 public class Simulation {
 
@@ -32,11 +33,13 @@ public class Simulation {
         return strike;
     }
 
-    public String[] getZones(int randomNumber){
+    public String[] getZones(){
+        Random rand = new Random();
+        int  randomNumber = rand.nextInt(36);
         HashMap<String, int[]> strike = Simulation.getHashMap();
         String[] zones = new String[5];
         int counter = 0;
-        
+
         if (randomNumber == 0) {
             String[] zeroZone = new String[1];
             zeroZone[0] = "Zero";
@@ -48,7 +51,6 @@ public class Simulation {
 
             for (int i : value){
                 if (i == randomNumber){
-                    System.out.println("true");
                     zones[counter] = key;
                     counter++;
                 }
@@ -56,11 +58,30 @@ public class Simulation {
         }
         return zones;
     }
-    
+
+    public void generateData(){
+            // writer
+        try {
+        FileWriter writer = new FileWriter("output.csv");
+
+        // data
+        for(String element: getZones()) {
+            writer.write(element);
+            writer.write(",");
+        }
+        writer.write("\n");
+        writer.flush();
+        writer.close();
+        } catch (IOException e){
+            System.out.println(e);
+        }
+    }
+
     public static void main(String[] args) {
 
         Simulation simu = new Simulation();
-        String[] arr = simu.getZones(0);
+        String[] arr = simu.getZones();
         System.out.println(Arrays.toString(arr));
+        simu.generateData();
     }
 }
