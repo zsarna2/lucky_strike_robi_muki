@@ -14,8 +14,8 @@ public class Main {
     public static void main(String[] args) {
         
         Simulation test = Main.generateSimulation(Integer.parseInt(args[0]));
-
-        Logger.log("csv file content", Arrays.toString(test.content));
+        Logger logger = new Logger();
+        logger.log("csv file content", Arrays.toString(test.content));
 
     }
 }
