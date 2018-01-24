@@ -38,7 +38,7 @@ public class Simulation {
         strike.put("Third dozen", Simulation.thirddozen);
         strike.put("First half", Simulation.firsthalf);
         strike.put("Second half", Simulation.secondhalf);
-        strike.put("Fist column", Simulation.firstcolumn);
+        strike.put("First column", Simulation.firstcolumn);
         strike.put("Second column", Simulation.secondcolumn);
         strike.put("Third column", Simulation.thirdcolumn);
         return strike;

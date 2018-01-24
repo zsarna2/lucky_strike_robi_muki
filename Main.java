@@ -19,13 +19,10 @@ public class Main {
         } else {
         
             Simulation test = Main.generateSimulation(Integer.parseInt(args[0]));
+            Simulator simulator = new Simulator(test, logger);
+            Result result = simulator.run();
 
-            Statistics statistics = new Statistics();
-
-            for (String key : statistics.stats.keySet()){
-                String value = statistics.stats.get(key).toString();
-                logger.log(key, value);
-            }
+            System.out.println(result.column);
         }
     }
 }
