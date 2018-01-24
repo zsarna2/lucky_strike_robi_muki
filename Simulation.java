@@ -85,7 +85,7 @@ public class Simulation {
         writer.flush();
         writer.close();
         } catch (IOException e){
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 
