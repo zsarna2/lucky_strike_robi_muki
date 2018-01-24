@@ -19,8 +19,13 @@ public class Main {
         } else {
         
             Simulation test = Main.generateSimulation(Integer.parseInt(args[0]));
-        
-            logger.log("csv file content", Arrays.toString(test.content));
+
+            Statistics statistics = new Statistics();
+
+            for (String key : statistics.stats.keySet()){
+                String value = statistics.stats.get(key).toString();
+                logger.log(key, value);
+            }
         }
     }
 }
