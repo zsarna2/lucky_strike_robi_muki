@@ -1,29 +1,51 @@
 import java.util.regex.*;
 import java.io.*;
 import java.util.*;
+import java.util.stream.Stream;
 
 public class Statistics {
 
-    public static void main(String[] args) {
+    public static boolean isInteger(String input) {
         try {
-            File x = new File("output.csv");
-            Scanner sc = new Scanner(x);
-            while(sc.hasNext()) {
-                String text = Scanner.toString(sc);
+            Integer.parseInt(input);
+            return true;
+        }
+        catch(Exception e) {
+            return false;
+        }
+    }
+
+
+    public static void stats() {
+        int[] oppnumbers1 = new int[36];
+        String[] oppzones = {"Zero", "Reds", "Blacks", "Evens", "Odds", "Frist dozen", "Second dozen", "Third dozen", "First half", "Second half", "Fist column", "Second column", "Third column"};
+        for (int i = 1;i <= 36;i++) {
+            oppnumbers1[i-1] = i;
+        }
+        String[] oppnumbers2=Arrays.toString(oppnumbers1).split("[\\[\\]]")[1].split(", ");
+
+        Simulation text = Simulation.load();
+        for (String item : text.content) {
+            int numcount = 0;
+            if (Statistics.isInteger(item)) {
+                for (String item2 : oppnumbers2) {
+                    if (item2.equals(item)) {
+                        numcount++;
+                        System.out.println(item2 + " " + numcount);
+                    }
+                }
             }
-            sc.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("Error");
         }
 
-        String reds = "text";
-        Pattern pattern = Pattern.compile("Reds");
-        Matcher  matcher = pattern.matcher(reds);
+        for (String item : oppzones) {
+            String matches = Arrays.toString(text.content);
 
-        int count = 0;
-        while (matcher.find())
-            count++;
-
-        System.out.println(count);
+            Pattern pattern = Pattern.compile(item);
+            Matcher  matcher = pattern.matcher(matches);
+            int zonecount = 0;
+            while (matcher.find())
+                zonecount++;
+            System.out.println(item + " " + zonecount);
+        }
     }
 }
