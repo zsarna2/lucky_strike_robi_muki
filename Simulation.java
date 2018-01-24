@@ -89,7 +89,8 @@ public class Simulation {
         }
     }
 
-    public void load(){
+    public static Simulation load(){
+        Simulation loadedSim = new Simulation();
         try {
             int counter = 0;
             BufferedReader reader = new BufferedReader(new FileReader("output.csv"));
@@ -100,28 +101,24 @@ public class Simulation {
             reader.close();
             BufferedReader x = new BufferedReader(new FileReader("output.csv"));
             String dataRow = x.readLine();
-            String[] content = new String[6 * lines - 1];
+            String[] loadedContent = new String[6 * lines];
             while(dataRow != null){
                 String[] dataArray = dataRow.split(",");
                 for (String item:dataArray) {
-                    content[counter] = item;
+                    loadedContent[counter] = item;
                     counter++;
                 }
                 dataRow = x.readLine();
             }
             x.close();
-            System.out.println(Arrays.toString(content));
+            loadedSim.content = loadedContent;
+            
 
         } catch (FileNotFoundException e) {
-            System.out.println("Error");
+            e.printStackTrace();
         } catch (IOException e) {
-            System.out.println("Error");
+            e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-
-        Simulation simu = new Simulation();
-        simu.load();
+        return loadedSim;
     }
 }
