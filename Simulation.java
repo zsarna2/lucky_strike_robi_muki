@@ -1,5 +1,6 @@
 import java.util.*;
 import java.io.*;
+import java.io.LineNumberReader;
 
 public class Simulation {
 
@@ -47,12 +48,15 @@ public class Simulation {
         Random rand = new Random();
         int  randomNumber = rand.nextInt(36);
         HashMap<String, int[]> strike = Simulation.getHashMap();
-        String[] zones = new String[5];
-        int counter = 0;
-
+        String[] zones = new String[6];
+        int counter = 1;
+        zones[0] = Integer.toString(randomNumber);
+        
         if (randomNumber == 0) {
-            String[] zeroZone = new String[1];
-            zeroZone[0] = "Zero";
+            String[] zeroZone = new String[6];
+            for (int i =0; i < 6; i++){
+                zeroZone[i] = "Zero";
+            }
             return zeroZone;
         }
         for (Map.Entry<String, int[]> entry : strike.entrySet()){
@@ -87,13 +91,30 @@ public class Simulation {
 
     public void load(){
         try {
-            File x = new File("output.csv");
-            Scanner sc = new Scanner(x);
-            while(sc.hasNext()) {
-                System.out.println(Arrays.toString(sc.nextLine().split(",")));
+            int counter = 0;
+            BufferedReader reader = new BufferedReader(new FileReader("output.csv"));
+            int lines = 0;
+            while (reader.readLine() != null) {
+                lines++;
             }
-            sc.close();
+            reader.close();
+            BufferedReader x = new BufferedReader(new FileReader("output.csv"));
+            String dataRow = x.readLine();
+            String[] content = new String[6 * lines - 1];
+            while(dataRow != null){
+                String[] dataArray = dataRow.split(",");
+                for (String item:dataArray) {
+                    content[counter] = item;
+                    counter++;
+                }
+                dataRow = x.readLine();
+            }
+            x.close();
+            System.out.println(Arrays.toString(content));
+
         } catch (FileNotFoundException e) {
+            System.out.println("Error");
+        } catch (IOException e) {
             System.out.println("Error");
         }
     }
@@ -101,9 +122,6 @@ public class Simulation {
     public static void main(String[] args) {
 
         Simulation simu = new Simulation();
-        String[] arr = simu.content;
-        System.out.println(Arrays.toString(arr));
-        simu.generateData();
         simu.load();
     }
 }
