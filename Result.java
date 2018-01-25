@@ -9,7 +9,6 @@ public class Result {
     String half;
     String dozen;
     String column;
-    String zero;
     Statistics resstats;
 
     public Result(Statistics resstats) {
@@ -21,7 +20,6 @@ public class Result {
         HashMap<String, Integer> dozens = new HashMap<String, Integer>();
         HashMap<String, Integer> columns = new HashMap<String, Integer>();
         HashMap<String, Integer> numbers = new HashMap<String, Integer>();
-        HashMap<String, Integer> zeros = new HashMap<String, Integer>();
 
         for (Map.Entry<String, Integer> entry : resstats.stats.entrySet()) {
             String key = entry.getKey();
@@ -36,8 +34,6 @@ public class Result {
                 dozens.put(key, value);
             } else if (key.equals("First column") || key.equals("Second column") || key.equals("Third column")) {
                 columns.put(key, value);
-            } else if (key.equals("Zero")) {
-                zeros.put(key, value);
             } else {
                 numbers.put(key, value);
             }
@@ -48,8 +44,18 @@ public class Result {
         this.evenodd = Result.getKeyByMaxValue(evenodds);
         this.dozen = Result.getKeyByMaxValue(dozens);
         this.column = Result.getKeyByMaxValue(columns);
-        this.number = Result.getKeyByMaxValue(numbers);
-        this.zero = Result.getKeyByMaxValue(zeros);
+        this.number = "";
+
+        int maxValue = Result.getMaxValue(numbers);
+        String appender = "";
+        for (Map.Entry<String, Integer> entry : numbers.entrySet()) {
+            String tempKey = entry.getKey();
+            Integer tempValue = entry.getValue();
+            if (maxValue == tempValue) {
+                number += (appender + tempKey);
+                appender = ", ";
+            }
+        }
 
     }
 
@@ -64,5 +70,18 @@ public class Result {
         }
         maxKey = maxEntry.getKey();
         return maxKey;
+    }
+
+    public static int getMaxValue(HashMap<String, Integer> myMap) {
+        int maxValue = 0;
+        Map.Entry<String, Integer> maxEntry = null;
+
+        for (Map.Entry<String, Integer> entry : myMap.entrySet()) {
+            if (maxEntry == null || entry.getValue().compareTo(maxEntry.getValue()) > 0) {
+            maxEntry = entry;
+            }
+        }
+        maxValue = maxEntry.getValue();
+        return maxValue;
     }
 }

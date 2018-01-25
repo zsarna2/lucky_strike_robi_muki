@@ -33,7 +33,7 @@ public class Simulation {
         strike.put("Blacks", Simulation.blacks);
         strike.put("Evens", Simulation.evens);
         strike.put("Odds", Simulation.odds);
-        strike.put("Frist dozen", Simulation.firstdozen);
+        strike.put("First dozen", Simulation.firstdozen);
         strike.put("Second dozen", Simulation.seconddozen);
         strike.put("Third dozen", Simulation.thirddozen);
         strike.put("First half", Simulation.firsthalf);
