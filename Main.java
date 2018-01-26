@@ -43,6 +43,7 @@ public class Main {
                                     String value = entry.getValue().toString();  
                                     logger.log(name,value);
                                 }
+                                logger.logWithoutTimestamp("","");
                                 continue;
                             }
                             else if (option.equals("1")) {
@@ -53,6 +54,7 @@ public class Main {
                                 logger.logWithoutTimestamp("or its must be in the",result.half);
                                 logger.logWithoutTimestamp("to triple your cash, bet the",result.dozen);
                                 logger.logWithoutTimestamp("or the",result.column);
+                                logger.logWithoutTimestamp("","");
                                 continue;
                             }
                             else if (option.equals("3")){
@@ -70,6 +72,7 @@ public class Main {
                                     String value = entry.getValue().toString();  
                                     logger.log(name,value);
                                 }
+                                logger.logWithoutTimestamp("","");
                                 continue;
                             }
                             else if (option.equals("4")){

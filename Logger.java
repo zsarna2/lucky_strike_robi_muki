@@ -13,7 +13,12 @@ public class Logger {
 
     public void logWithoutTimestamp(String menuNumber, String menu) {
 
-        System.out.printf("%s: %s\n", menuNumber, menu);
+        if (menuNumber.equals("") && menu.equals("")){
+            System.out.println();
+        }
+        else {
+            System.out.printf("%s: %s\n", menuNumber, menu);
+        }
     }
 
     public void clearConsole() {
