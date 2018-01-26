@@ -21,7 +21,7 @@ public class Statistics {
     public Statistics() {
         this.stats = new HashMap<String, Integer>();
         int[] oppnumbers1 = new int[36];
-        String[] oppzones = {"Zero", "Reds", "Blacks", "Evens", "Odds", "Frist dozen", "Second dozen", "Third dozen", "First half", "Second half", "Fist column", "Second column", "Third column"};
+        String[] oppzones = {"Zero", "Reds", "Blacks", "Evens", "Odds", "First dozen", "Second dozen", "Third dozen", "First half", "Second half", "First column", "Second column", "Third column"};
         for (int i = 1;i <= 36;i++) {
             oppnumbers1[i-1] = i;
         }
